@@ -36,64 +36,9 @@ fuentes_rss = [
         "category": "Negocios"
     },
     {
-        "url": "https://www.eluniversal.com.mx/rss/ciencia.xml",
-        "source": "El Universal",
-        "category": "Ciencia"
-    },
-    {
-        "url": "https://www.eluniversal.com.mx/rss/cultura.xml",
-        "source": "El Universal",
-        "category": "Cultura"
-    },
-    {
-        "url": "https://www.eluniversal.com.mx/rss/economia.xml",
-        "source": "El Universal",
-        "category": "Economía"
-    },
-    {
-        "url": "https://www.eluniversal.com.mx/rss/negocios.xml",
-        "source": "El Universal",
-        "category": "Negocios"
-    },
-    {
-        "url": "https://www.excelsior.com.mx/rss/ciencia.xml",
-        "source": "Excélsior",
-        "category": "Ciencia"
-    },
-    {
         "url": "https://www.excelsior.com.mx/rss/cultura.xml",
         "source": "Excélsior",
         "category": "Cultura"
-    },
-    {
-        "url": "https://www.excelsior.com.mx/rss/economia.xml",
-        "source": "Excélsior",
-        "category": "Economía"
-    },
-    {
-        "url": "https://www.excelsior.com.mx/rss/negocios.xml",
-        "source": "Excélsior",
-        "category": "Negocios"
-    },
-    {
-        "url": "https://www.milenio.com/rss/ciencia.xml",
-        "source": "Milenio",
-        "category": "Ciencia"
-    },
-    {
-        "url": "https://www.milenio.com/rss/cultura.xml",
-        "source": "Milenio",
-        "category": "Cultura"
-    },
-    {
-        "url": "https://www.milenio.com/rss/economia.xml",
-        "source": "Milenio",
-        "category": "Economía"
-    },
-    {
-        "url": "https://www.milenio.com/rss/negocios.xml",
-        "source": "Milenio",
-        "category": "Negocios"
     },
     {
         "url": "https://www.elfinanciero.com.mx/rss/ciencia.xml",
@@ -116,46 +61,6 @@ fuentes_rss = [
         "category": "Negocios"
     },
     {
-        "url": "https://www.20minutos.com.mx/rss/ciencia.xml",
-        "source": "20 Minutos",
-        "category": "Ciencia"
-    },
-    {
-        "url": "https://www.20minutos.com.mx/rss/cultura.xml",
-        "source": "20 Minutos",
-        "category": "Cultura"
-    },
-    {
-        "url": "https://www.20minutos.com.mx/rss/economia.xml",
-        "source": "20 Minutos",
-        "category": "Economía"
-    },
-    {
-        "url": "https://www.20minutos.com.mx/rss/negocios.xml",
-        "source": "20 Minutos",
-        "category": "Negocios"
-    },
-    {
-        "url": "https://www.elsoldemexico.com.mx/rss/ciencia.xml",
-        "source": "El Sol de México",
-        "category": "Ciencia"
-    },
-    {
-        "url": "https://www.elsoldemexico.com.mx/rss/cultura.xml",
-        "source": "El Sol de México",
-        "category": "Cultura"
-    },
-    {
-        "url": "https://www.elsoldemexico.com.mx/rss/economia.xml",
-        "source": "El Sol de México",
-        "category": "Economía"
-    },
-    {
-        "url": "https://www.elsoldemexico.com.mx/rss/negocios.xml",
-        "source": "El Sol de México",
-        "category": "Negocios"
-    },
-    {
         "url": "https://www.mural.com.mx/rss/ciencia.xml",
         "source": "Mural",
         "category": "Ciencia"
@@ -173,26 +78,6 @@ fuentes_rss = [
     {
         "url": "https://www.mural.com.mx/rss/negocios.xml",
         "source": "Mural",
-        "category": "Negocios"
-    },
-    {
-        "url": "https://www.altonivel.com.mx/rss/ciencia.xml",
-        "source": "Alto Nivel",
-        "category": "Ciencia"
-    },
-    {
-        "url": "https://www.altonivel.com.mx/rss/cultura.xml",
-        "source": "Alto Nivel",
-        "category": "Cultura"
-    },
-    {
-        "url": "https://www.altonivel.com.mx/rss/economia.xml",
-        "source": "Alto Nivel",
-        "category": "Economía"
-    },
-    {
-        "url": "https://www.altonivel.com.mx/rss/negocios.xml",
-        "source": "Alto Nivel",
         "category": "Negocios"
     }
 ]
