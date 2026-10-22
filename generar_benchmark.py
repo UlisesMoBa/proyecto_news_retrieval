@@ -29,7 +29,7 @@ print("✅ Archivo queries.tsv generado exitosamente.")
 
 # 3. Leer tu corpus más reciente para generar el qrels.tsv automáticamente
 try:
-    df_corpus = pd.read_csv("news_raw_corpus.tsv", sep="\t")
+    df_corpus = pd.read_csv("news_normalized_corpus.tsv", sep="\t")
     
     # Combinamos título y descripción para buscar mejor
     df_corpus['texto_completo'] = df_corpus['title'].fillna('') + ' ' + df_corpus['description'].fillna('')

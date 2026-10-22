@@ -1,83 +1,132 @@
 import pandas as pd
-import spacy
-import re
-import joblib
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import spacy
+import sys
 
-# 1. Cargar el modelo de NLP (el mismo que en la normalización)
-print("Cargando modelo de lenguaje...")
-nlp = spacy.load("es_core_news_sm")
+# 1. Cargar el modelo de lenguaje para limpiar la consulta del usuario
+try:
+    nlp = spacy.load("es_core_news_sm")
+except OSError:
+    print("Error: No se encontró el modelo. Ejecuta: python -m spacy download es_core_news_sm")
+    sys.exit(1)
 
-# 2. Funciones de limpieza y normalización (EXACTAMENTE IGUALES al paso anterior)
-def limpieza_texto(texto):
-    if not isinstance(texto, str): return ""
-    texto = re.sub(r'http[s]?://\S+', '', texto)
-    texto = re.sub(r'[^\w\sáéíóúÁÉÍÓÚñÑüÜ]', ' ', texto)
-    texto = re.sub(r'\s+', ' ', texto).strip()
-    return texto
+def normalizar_consulta(texto):
+    """Aplica la misma limpieza a la búsqueda que la que usaste en el corpus"""
+    doc = nlp(texto.lower())
+    # Filtra signos de puntuación, stopwords y extrae el lema
+    tokens = [token.lemma_ for token in doc if not token.is_stop and not token.is_punct and token.is_alpha]
+    return " ".join(tokens)
 
-def normalizacion_texto(texto):
-    if not isinstance(texto, str) or texto == "": return ""
-    texto = texto.lower()
-    doc = nlp(texto)
-    tokens_procesados = []
-    pos_a_eliminar = {"DET", "ADP", "CCONJ", "SCONJ", "PRON"}
-    for token in doc:
-        if token.pos_ not in pos_a_eliminar:
-            tokens_procesados.append(token.lemma_)
-    return " ".join(tokens_procesados)
-
-def procesar_consulta(consulta):
-    texto_limpio = limpieza_texto(consulta)
-    return normalizacion_texto(texto_limpio)
-
-# 3. Cargar el corpus original (para mostrar los datos reales al usuario) y los modelos PKL
-print("Cargando corpus y modelos vectoriales...")
-df_corpus = pd.read_csv("news_raw_corpus.tsv", sep="\t") 
-
-# Aquí indicamos qué modelo usar (Ejemplo: TF-IDF sobre la Descripción)
-# Puedes cambiar estos archivos para probar Frecuencia o Binario sobre el Título
-vectorizador = joblib.load('desc_tfidf_vectorizer.pkl')
-matriz_documentos = joblib.load('desc_tfidf_matrix.pkl')
-
-print("\n" + "="*50)
-print(" SISTEMA DE RECUPERACIÓN DE NOTICIAS V1.0")
-print("="*50)
-
-# 4. Bucle principal del buscador
-while True:
-    consulta_usuario = input("\nIngresa tu búsqueda (o 'salir' para terminar): ")
-    
-    if consulta_usuario.lower() == 'salir':
-        break
+def cargar_datos():
+    try:
+        # AQUÍ CARGAMOS AMBOS ARCHIVOS
+        df_raw = pd.read_csv('news_raw_corpus.tsv', sep='\t')
+        df_norm = pd.read_csv('news_normalized_corpus.tsv', sep='\t')
         
-    # A) Aplicar el mismo proceso de normalización
-    consulta_normalizada = procesar_consulta(consulta_usuario)
-    print(f"Consulta normalizada: [{consulta_normalizada}]")
+        # Preparamos la columna "contenido" en ambos DataFrames
+        df_raw['content'] = df_raw['title'].fillna('') + ' ' + df_raw['description'].fillna('')
+        df_norm['content'] = df_norm['title'].fillna('') + ' ' + df_norm['description'].fillna('')
+        
+        # Aseguramos que tengan IDs para mostrarlos
+        if 'id' not in df_raw.columns:
+            df_raw['id'] = [str(i) for i in range(len(df_raw))]
+            
+        return df_raw, df_norm
+    except FileNotFoundError as e:
+        print(f"Error: Faltan archivos del corpus. Detalle: {e}")
+        sys.exit(1)
+
+def cargar_benchmark():
+    try:
+        return pd.read_csv('queries.tsv', sep='\t')
+    except FileNotFoundError:
+        print("Error: No se encontró 'queries.tsv'.")
+        return None
+
+def configurar_parametros():
+    print("\n" + "="*40)
+    print(" CONFIGURACIÓN DEL ESPACIO VECTORIAL")
+    print("="*40)
     
-    # B) Representar la consulta en el espacio vectorial
-    vector_consulta = vectorizador.transform([consulta_normalizada])
+    print("\n1. ¿En qué campo deseas buscar?")
+    print("   [1] Título")
+    print("   [2] Contenido (Título + Descripción)")
+    campo = 'title' if input("Elige (1/2): ").strip() == '1' else 'content'
     
-    # C) Calcular la similitud del coseno
-    similitudes = cosine_similarity(vector_consulta, matriz_documentos).flatten()
+    print("\n2. ¿Qué N-gramas deseas utilizar?")
+    print("   [1] Unigrama (Palabras individuales)")
+    print("   [2] Bigrama (Pares de palabras)")
+    ngram_range = (1, 1) if input("Elige (1/2): ").strip() == '1' else (2, 2)
     
-    # D) Ordenar los resultados en orden descendente y obtener los 10 mejores
+    print("\n3. Representación mediante el modelo de espacio vectorial:")
+    print("   [1] Frecuencia (TF)")
+    print("   [2] Binaria")
+    print("   [3] TF-IDF")
+    m_opt = input("Elige (1/2/3): ").strip()
+    
+    if m_opt == '1':
+        vectorizer = CountVectorizer(ngram_range=ngram_range, binary=False)
+    elif m_opt == '2':
+        vectorizer = CountVectorizer(ngram_range=ngram_range, binary=True)
+    else:
+        vectorizer = TfidfVectorizer(ngram_range=ngram_range)
+        
+    return campo, vectorizer
+
+def ejecutar_busqueda(query_text, df_raw, df_norm, campo, vectorizer):
+    # LIMPIEZA DE LA CONSULTA
+    query_limpia = normalizar_consulta(query_text)
+    print(f"\n[Interpretando consulta como]: '{query_limpia}'")
+    
+    # MATEMÁTICAS: Usamos el df_norm (CORPUS NORMALIZADO) para entrenar la matriz
+    matriz_corpus = vectorizer.fit_transform(df_norm[campo])
+    vector_query = vectorizer.transform([query_limpia])
+    
+    similitudes = cosine_similarity(vector_query, matriz_corpus).flatten()
     indices_top10 = similitudes.argsort()[::-1][:10]
     
-    # E) Mostrar los 10 documentos más similares, incluyendo su puntuación (score)
     print("\n--- TOP 10 RESULTADOS ---")
-    for i, idx in enumerate(indices_top10):
+    for rank, idx in enumerate(indices_top10, 1):
         score = similitudes[idx]
+        if score > 0:
+            # VITRINA: Usamos el df_raw (CORPUS CRUDO) para imprimir un texto legible
+            print(f"{rank}. Score: {score:.4f} | ID: {df_raw.iloc[idx]['id']}")
+            print(f"   Título: {df_raw.iloc[idx]['title'][:80]}...")
+        else:
+            print(f"{rank}. [Sin coincidencias suficientes]")
+
+def main():
+    print("Cargando modelo de lenguaje y corpus...")
+    df_raw, df_norm = cargar_datos()
+    
+    while True:
+        print("\n" + "="*40)
+        print(" SISTEMA DE RECUPERACIÓN DE NOTICIAS")
+        print("="*40)
+        print("[1] Búsqueda Dirigida (Consulta libre)")
+        print("[2] Búsqueda sobre el Benchmark")
+        print("[3] Salir")
         
-        # Omitir resultados con score de 0 (ninguna similitud)
-        if score == 0:
-            if i == 0: print("No se encontraron documentos relevantes para esta búsqueda.")
+        opcion = input("\nElige una opción (1/2/3): ").strip()
+        
+        if opcion == '3':
             break
-            
-        doc_id = df_corpus.iloc[idx]['id']
-        titulo = df_corpus.iloc[idx]['title']
-        fuente = df_corpus.iloc[idx]['source']
-        
-        print(f"{i+1}. Score: {score:.4f} | {fuente}")
-        print(f"   Título: {titulo}")
-        print(f"   ID: {doc_id}\n")
+        elif opcion == '1':
+            campo, vectorizer = configurar_parametros()
+            query = input("\nIngresa tu búsqueda dirigida: ").strip()
+            if query:
+                ejecutar_busqueda(query, df_raw, df_norm, campo, vectorizer)
+        elif opcion == '2':
+            df_queries = cargar_benchmark()
+            if df_queries is not None:
+                for index, row in df_queries.iterrows():
+                    print(f"{row['query_id']}: {row['query']}")
+                q_id = input("\nIngresa el ID de la consulta (ej. Q01): ").strip().upper()
+                seleccion = df_queries[df_queries['query_id'] == q_id]
+                if not seleccion.empty:
+                    campo, vectorizer = configurar_parametros()
+                    ejecutar_busqueda(seleccion.iloc[0]['query'], df_raw, df_norm, campo, vectorizer)
+
+if __name__ == "__main__":
+    main()
