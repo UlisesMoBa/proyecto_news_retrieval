@@ -13,21 +13,21 @@ df_corpus['text'] = df_corpus['title'].fillna('') + ' ' + df_corpus['description
 
 # 2. Definir las 15 consultas oficiales
 queries = [
-    {"query_id": "Q01", "difficulty_level": 1, "query": "inflación y tasas de interés en méxico"},
-    {"query_id": "Q02", "difficulty_level": 1, "query": "nueva misión espacial de la nasa"},
-    {"query_id": "Q03", "difficulty_level": 1, "query": "exposición de arte en el museo"},
-    {"query_id": "Q04", "difficulty_level": 1, "query": "crecimiento del producto interno bruto"},
-    {"query_id": "Q05", "difficulty_level": 1, "query": "descubrimiento de nueva especie de dinosaurio"},
-    {"query_id": "Q06", "difficulty_level": 2, "query": "aumento en el costo de los alimentos"},
-    {"query_id": "Q07", "difficulty_level": 2, "query": "nuevos tratamientos médicos para el cáncer"},
-    {"query_id": "Q08", "difficulty_level": 2, "query": "festival internacional de cine y cultura"},
-    {"query_id": "Q09", "difficulty_level": 2, "query": "inversiones extranjeras en empresas de tecnología"},
-    {"query_id": "Q10", "difficulty_level": 2, "query": "avances en energía renovable solar"},
-    {"query_id": "Q11", "difficulty_level": 3, "query": "impacto económico por el clima extremo en cosechas"},
-    {"query_id": "Q12", "difficulty_level": 3, "query": "reemplazo de trabajadores por inteligencia artificial"},
-    {"query_id": "Q13", "difficulty_level": 3, "query": "políticas gubernamentales para proteger el patrimonio histórico"},
-    {"query_id": "Q14", "difficulty_level": 3, "query": "empresas al borde de la quiebra por mala gestión"},
-    {"query_id": "Q15", "difficulty_level": 3, "query": "ética en la manipulación genética humana"}
+    {"query_id": "Q01", "difficulty_level": 1, "query": "Misterios del ajolote"},
+    {"query_id": "Q02", "difficulty_level": 1, "query": "Nobel de Química espejo molecular"},
+    {"query_id": "Q03", "difficulty_level": 1, "query": "Inteligencia artificial matemáticos"},
+    {"query_id": "Q04", "difficulty_level": 1, "query": "Negociaciones del T-MEC México Estados Unidos"},
+    {"query_id": "Q05", "difficulty_level": 1, "query": "inflación y tasas de interés en México"},
+    {"query_id": "Q06", "difficulty_level": 2, "query": "Efectos del café en la salud intestinal y el estado de ánimo"},
+    {"query_id": "Q07", "difficulty_level": 2, "query": "Ley de pagos digitales y electrónicos uso obligatorio de tarjeta"},
+    {"query_id": "Q08", "difficulty_level": 2, "query": "Aumento del gasto en transición energética sin métricas"},
+    {"query_id": "Q09", "difficulty_level": 2, "query": "Pérdidas del fondo para el retiro y crisis de pensiones"},
+    {"query_id": "Q10", "difficulty_level": 2, "query": "Retraso del Museo de Ciencias Ambientales y falta de infraestructura cultura"},
+    {"query_id": "Q11", "difficulty_level": 3, "query": "Uso de robots de reparto para escanear rostros y compartir información biométrica"},
+    {"query_id": "Q12", "difficulty_level": 3, "query": "Cómo la inteligencia artificial puede impulsar una industria tecnológica propia en México"},
+    {"query_id": "Q13", "difficulty_level": 3, "query": "Efectos de la incertidumbre jurídica en las micro pequeñas y medianas empresas"},
+    {"query_id": "Q14", "difficulty_level": 3, "query": "Consecuencias económicas y sociales del desperdicio de alimentos en México"},
+    {"query_id": "Q15", "difficulty_level": 3, "query": "Relación entre transformación energética y transparencia en las decisiones de inversión"}
 ]
 
 # Guardar queries.tsv

@@ -1,16 +1,16 @@
 query_id	difficulty_level	query
-Q01	1	inflación y tasas de interés en méxico
-Q02	1	nueva misión espacial de la nasa
-Q03	1	exposición de arte en el museo
-Q04	1	crecimiento del producto interno bruto
-Q05	1	descubrimiento de nueva especie de dinosaurio
-Q06	2	aumento en el costo de los alimentos
-Q07	2	nuevos tratamientos médicos para el cáncer
-Q08	2	festival internacional de cine y cultura
-Q09	2	inversiones extranjeras en empresas de tecnología
-Q10	2	avances en energía renovable solar
-Q11	3	impacto económico por el clima extremo en cosechas
-Q12	3	reemplazo de trabajadores por inteligencia artificial
-Q13	3	políticas gubernamentales para proteger el patrimonio histórico
-Q14	3	empresas al borde de la quiebra por mala gestión
-Q15	3	ética en la manipulación genética humana
+Q01	1	1
+Q02	1	Nobel de Química espejo molecular
+Q03	1	Inteligencia artificial matemáticos
+Q04	1	Negociaciones del T-MEC México Estados Unidos
+Q05	1	inflación y tasas de interés en México
+Q06	2	Efectos del café en la salud intestinal y el estado de ánimo
+Q07	2	Ley de pagos digitales y electrónicos uso obligatorio de tarjeta
+Q08	2	Aumento del gasto en transición energética sin métricas
+Q09	2	Pérdidas del fondo para el retiro y crisis de pensiones
+Q10	2	Retraso del Museo de Ciencias Ambientales y falta de infraestructura cultura
+Q11	3	Uso de robots de reparto para escanear rostros y compartir información biométrica
+Q12	3	Cómo la inteligencia artificial puede impulsar una industria tecnológica propia en México
+Q13	3	Efectos de la incertidumbre jurídica en las micro pequeñas y medianas empresas
+Q14	3	Consecuencias económicas y sociales del desperdicio de alimentos en México
+Q15	3	Relación entre transformación energética y transparencia en las decisiones de inversión
