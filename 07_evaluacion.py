@@ -12,7 +12,7 @@ matriz_documentos = joblib.load('desc_tfidf_matrix.pkl')
 
 df_queries = pd.read_csv("queries.tsv", sep="\t")
 df_qrels = pd.read_csv("qrels.tsv", sep="\t")
-df_corpus = pd.read_csv("news_raw_corpus.tsv", sep="\t")
+df_corpus = pd.read_csv("news_raw_corpus_cleaned.tsv", sep="\t")
 
 # === LA SOLUCIÓN: FORZAR QUE TODOS LOS IDs SEAN TEXTO LIMPIO ===
 df_queries['query_id'] = df_queries['query_id'].astype(str).str.strip()

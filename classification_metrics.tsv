@@ -1,0 +1,4 @@
+experiment_id	model	split	accuracy	macro_precision	macro_recall	macro_f1
+C01	LogisticRegression	dev	0.6418	0.6421	0.6164	0.6245
+C02	LogisticRegression	dev	0.6866	0.7393	0.617	0.6479
+test	LogisticRegression	test	0.6567	0.6824	0.6569	0.6609

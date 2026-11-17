@@ -6,7 +6,7 @@ import re
 nlp = spacy.load("es_core_news_sm")
 
 # Leer el corpus crudo
-df = pd.read_csv("news_raw_corpus.tsv", sep="\t")
+df = pd.read_csv("news_raw_corpus_cleaned.tsv", sep="\t")
 
 # ==========================================
 # 1. HOMOLOGACIÓN

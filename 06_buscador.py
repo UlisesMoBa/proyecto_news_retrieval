@@ -21,7 +21,7 @@ def normalizar_consulta(texto):
 def cargar_datos():
     try:
         # AQUÍ CARGAMOS AMBOS ARCHIVOS
-        df_raw = pd.read_csv('news_raw_corpus.tsv', sep='\t')
+        df_raw = pd.read_csv('news_raw_corpus_cleaned.tsv', sep='\t')
         df_norm = pd.read_csv('news_normalized_corpus.tsv', sep='\t')
         
         # Preparamos la columna "contenido" en ambos DataFrames

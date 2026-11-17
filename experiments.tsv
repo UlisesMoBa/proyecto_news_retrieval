@@ -1,0 +1,4 @@
+experiment_id	task	normalization	representation	method	hyperparameters	dev_metric	selected
+C01	classification	lowercase + stopwords	TF-IDF (1,1)	LogisticRegression	C=1.0, class_weight=balanced	macro-F1=0.6245	no
+C02	classification	lowercase + stopwords	TF-IDF (1,2)	LogisticRegression	C=5.0, class_weight=balanced	macro-F1=0.6479	yes
+U01	topic_modeling	lowercase + stopwords	Counts (1,1)	LDA	n_components=4, max_iter=20	perplexity=...	yes
