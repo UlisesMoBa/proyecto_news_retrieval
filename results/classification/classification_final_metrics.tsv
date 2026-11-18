@@ -1,0 +1,2 @@
+experiment_id	model	class_weight	accuracy	precision_macro	recall_macro	f1_macro	precision_weighted	recall_weighted	f1_weighted	train_dev_documents	test_documents	vocabulary_size	empty_train_dev	empty_test
+FINAL_LR_BALANCED	LogisticRegression	balanced	0.6065573770491803	0.4732905982905983	0.4184523809523809	0.4350397255326833	0.5878520386717109	0.6065573770491803	0.5898353551320533	341	61	2194	1	2

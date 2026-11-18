@@ -1,0 +1,4 @@
+split	total_documents	documents_with_exact_duplicates	unique_documents
+dev	67	0	67
+test	67	0	67
+train	310	42	289

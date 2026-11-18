@@ -1,0 +1,3 @@
+experiment_id	algorithm	k	representation	ngram_range	vocabulary_size	train_documents	dev_documents	inertia	silhouette_train	silhouette_dev	empty_train	empty_dev	random_state
+K04_K7	KMeans	7	TF-IDF	1,2	1054	279	58	261.90489315645146	0.01189705532861828	-0.006943294229234344	2	2	0
+K04_K8	KMeans	8	TF-IDF	1,2	1054	279	58	260.89291480115656	0.010887806659825286	-0.019555104662184516	2	2	0

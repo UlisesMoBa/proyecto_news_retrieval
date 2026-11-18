@@ -1,0 +1,5 @@
+document_id	split	category	reason
+96aa7f2a-aead-48e6-9f95-85a73eedb472	train	Ciencia	Sin términos después de TF-IDF
+ae38f363-4fdb-473e-beaf-01e41f7e068a	train	Ciencia	Sin términos después de TF-IDF
+1fce31c1-eaa8-4978-a206-323caa59b96e	dev	Ciencia	Sin términos después de TF-IDF
+928b681c-ddf5-44f4-a633-c2123c71c826	dev	Cultura	Sin términos después de TF-IDF

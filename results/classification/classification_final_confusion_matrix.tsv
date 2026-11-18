@@ -1,0 +1,17 @@
+true_category	predicted_category	documents
+Ciencia	Ciencia	24
+Ciencia	Cultura	6
+Ciencia	Economía	1
+Ciencia	Negocios	1
+Cultura	Ciencia	10
+Cultura	Cultura	11
+Cultura	Economía	0
+Cultura	Negocios	0
+Economía	Ciencia	2
+Economía	Cultura	1
+Economía	Economía	0
+Economía	Negocios	0
+Negocios	Ciencia	3
+Negocios	Cultura	0
+Negocios	Economía	0
+Negocios	Negocios	2

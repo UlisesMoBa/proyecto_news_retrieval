@@ -1,0 +1,4 @@
+experiment_id	algorithm	k	split	representation	ngram_range	vocabulary_size	total_documents	valid_documents	empty_documents	observed_clusters	inertia	silhouette	random_state
+KFINAL_K5	KMeans	5	train	TF-IDF	1,2	1054	281	279	2	5	265.6740411072478	0.009832331653166508	0
+KFINAL_K5	KMeans	5	dev	TF-IDF	1,2	1054	60	58	2	5		0.005103831354399078	0
+KFINAL_K5	KMeans	5	test	TF-IDF	1,2	1054	61	59	2	5		0.012200447588374604	0
