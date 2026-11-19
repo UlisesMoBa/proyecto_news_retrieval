@@ -1,0 +1,5 @@
+experiment_id	task	preprocessing	representation	ngram_range	algorithm	n_components	max_iter	learning_method	vocabulary_size	train_perplexity	dev_perplexity	test_perplexity	selected
+U01	LDA	tokenization	CountVectorizer	(1, 1)	LatentDirichletAllocation	4	30	batch	464	135.34065967088372	276.743901143614	2392.388002446141	True
+U02	LDA	cleaning	CountVectorizer	(1, 1)	LatentDirichletAllocation	4	50	batch	965	352.24183825452593	1202.50436548871		False
+U03	LDA	cleaning_stopwords	CountVectorizer	(1, 1)	LatentDirichletAllocation	4	50	batch	891	980.0895102820339	17569.717533778887		False
+U04	LDA	cleaning_stopwords	CountVectorizer	(1, 2)	LatentDirichletAllocation	5	50	online	1043	1086.6014848503048	35511.96879693357		False
